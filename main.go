@@ -17,8 +17,8 @@ func die(msg string, a ...interface{}) {
 
 func main() {
 	args := os.Args
-	if len(args) < 1 {
-		die("usage: %s clone url", filepath.Base(os.Args[0]))
+	if len(args) < 2 {
+		die("usage: %s <repository>", filepath.Base(os.Args[0]))
 		os.Exit(1)
 	}
 	repo := args[1]
