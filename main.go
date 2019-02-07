@@ -6,6 +6,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"regexp"
+	"syscall"
 )
 
 var urlRegexp = regexp.MustCompile(`^(?:git@|https://)(github\.com|gitlab\.com)[:/]([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+).git$`)
@@ -37,13 +38,14 @@ func main() {
 	target := filepath.Join(gitpath, host, user, project)
 	err := os.MkdirAll(target, 0777)
 	if err != nil {
-		die("error creating directory %s", target)
+		die("error creating directory %s: %v", target, err)
 	}
-	cmd := exec.Command("git", "clone", repo, target)
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
-	err = cmd.Run()
+	git, err := exec.LookPath("git")
 	if err != nil {
-		os.Exit(1)
+		die("couldn't find git executable: %v", err)
+	}
+	err = syscall.Exec(git, []string{"git", "clone", repo, target}, os.Environ())
+	if err != nil {
+		die("failed to exec git clone: %v", err)
 	}
 }
