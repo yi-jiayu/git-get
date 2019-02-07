@@ -20,13 +20,11 @@ func main() {
 	args := os.Args
 	if len(args) < 2 {
 		die("usage: %s <repository>", filepath.Base(os.Args[0]))
-		os.Exit(1)
 	}
 	repo := args[1]
 	slug := urlRegexp.FindStringSubmatch(repo)
 	if slug == nil {
 		die("invalid url")
-		os.Exit(1)
 	}
 	gitpath := os.Getenv("GITPATH")
 	if gitpath == "" {
