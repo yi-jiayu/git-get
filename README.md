@@ -30,7 +30,7 @@ $ tree -L 3 $GITPATH
 ## Installation
 
 With a working Go toolchain:
-```console
+```
 go build -o ~/bin/git-get
 ```
 Replace `~/bin` with any directory on your `$PATH`.
