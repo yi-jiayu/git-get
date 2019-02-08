@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/yi-jiayu/git-get.svg?style=svg)](https://circleci.com/gh/yi-jiayu/git-get)
+
 # git-get
 Clone git repositories into namespaced directories like go get
 
