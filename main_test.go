@@ -51,6 +51,13 @@ func Test_destinationPath(t *testing.T) {
 			"subdomain.host.xz:path/to/repo.git/",
 			"user@subdomain.host.xz:path/to/repo.git/",
 		},
+		"path/to/repo": {
+			"/path/to/repo.git/",
+			"file:///path/to/repo.git/",
+		},
+		"": {
+			"path/to/repo.git/", // relative path
+		},
 	}
 	for expected, urls := range testCases {
 		for _, u := range urls {

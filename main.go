@@ -10,7 +10,7 @@ import (
 	"syscall"
 )
 
-var urlRegexp = regexp.MustCompile(`^(?:(?:ssh|git|https?|ftps?)://(?:[\w-]+@)?([a-zA-Z0-9.-]+)(?::\d+)?|(?:[\w-]+@)?([a-zA-Z0-9.-]+):)([\w./-]+).git/?$`)
+var urlRegexp = regexp.MustCompile(`^(?:(?:ssh|git|https?|ftps?)://(?:[\w-]+@)?([a-zA-Z0-9.-]+)(?::\d+)?/|file:///|(?:[\w-]+@)?([a-zA-Z0-9.-]+):|/)([\w./-]+).git/?$`)
 
 // destinationPath returns the path that a repository should be cloned to relative to GITPATH.
 func destinationPath(u string) string {
