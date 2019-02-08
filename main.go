@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
 	"os/exec"
@@ -10,7 +11,16 @@ import (
 	"syscall"
 )
 
+const website = "https://github.com/yi-jiayu/git-get"
+
+var (
+	version = "dev"
+	commit  = "none"
+)
+
 var urlRegexp = regexp.MustCompile(`^(?:(?:ssh|git|https?|ftps?)://(?:[\w-]+@)?([a-zA-Z0-9.-]+)(?::\d+)?/|file:///|(?:[\w-]+@)?([a-zA-Z0-9.-]+):|/)([\w./-]+).git/?$`)
+
+var showVersion bool
 
 // destinationPath returns the path that a repository should be cloned to relative to GITPATH.
 func destinationPath(u string) string {
@@ -27,12 +37,23 @@ func die(msg string, a ...interface{}) {
 	os.Exit(1)
 }
 
+func init() {
+	flag.BoolVar(&showVersion, "v", false, "print version info and exit")
+}
+
 func main() {
-	if len(os.Args) < 2 {
-		die("usage: %s <repository>", filepath.Base(os.Args[0]))
+	flag.Parse()
+
+	if showVersion {
+		fmt.Printf("git-get %s\ncommit %s\n%s\n", version, commit, website)
+		return
 	}
 
-	repo := os.Args[1]
+	if flag.NArg() < 2 {
+		die("usage: %s <repository>", filepath.Base(flag.Arg(0)))
+	}
+
+	repo := flag.Arg(1)
 	dest := destinationPath(repo)
 	if dest == "" {
 		die("invalid url: %v", repo)
