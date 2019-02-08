@@ -31,16 +31,32 @@ $ tree -L 3 $GITPATH
 
 ## Installation
 
+`git` will make any executable prefixed with `git-` on your `$PATH` available as a `git` subcommand, so you will be able to run `git-get` as `git get` once it is on your `$PATH`.
+
+### Binary downloads
+
+Download a precompiled binary for the latest release for your system from the [Releases page](https://github.com/yi-jiayu/git-get/releases) and put it on your `$PATH`.
+
+### Homebrew
+
+Users on MacOS can use Homebrew:
+
+```
+brew install yi-jiayu/tap/git-get
+```
+
+### From source
+
 With a working Go toolchain:
+
 ```
 go build -o ~/bin/git-get
 ```
+
 Replace `~/bin` with any directory on your `$PATH`.
 
-`git` will make any executable prefixed with `git-` on your `$PATH` available as a `git` subcommand, so you will be able to run `git-get` as `git get`.
-
-## URL support
+## Git URL support
 
 - [x] GitHub
 - [x] GitLab
-- [ ] Generic
+- [x] Generic
