@@ -49,11 +49,11 @@ func main() {
 		return
 	}
 
-	if flag.NArg() < 2 {
-		die("usage: %s <repository>", filepath.Base(flag.Arg(0)))
+	if flag.NArg() < 1 {
+		die("usage: %s <repository>", filepath.Base(os.Args[0]))
 	}
 
-	repo := flag.Arg(1)
+	repo := flag.Arg(0)
 	dest := destinationPath(repo)
 	if dest == "" {
 		die("invalid url: %v", repo)
