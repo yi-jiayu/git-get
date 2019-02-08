@@ -4,12 +4,23 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"path"
 	"path/filepath"
 	"regexp"
 	"syscall"
 )
 
-var urlRegexp = regexp.MustCompile(`^(?:git@|https://)(github\.com|gitlab\.com)[:/]([a-zA-Z0-9-]+)/([a-zA-Z0-9-]+).git$`)
+var urlRegexp = regexp.MustCompile(`^(?:(?:ssh|git|https?|ftps?)://(?:[\w-]+@)?([a-zA-Z0-9.-]+)(?::\d+)?|(?:[\w-]+@)?([a-zA-Z0-9.-]+):)([\w./-]+).git/?$`)
+
+// destinationPath returns the path that a repository should be cloned to relative to GITPATH.
+func destinationPath(u string) string {
+	m := urlRegexp.FindStringSubmatch(u)
+	if m == nil {
+		return ""
+	}
+	target := path.Join(m[1:]...)
+	return target
+}
 
 func die(msg string, a ...interface{}) {
 	fmt.Fprintf(os.Stderr, msg+"\n", a...)
@@ -22,9 +33,9 @@ func main() {
 	}
 
 	repo := os.Args[1]
-	slug := urlRegexp.FindStringSubmatch(repo)
-	if slug == nil {
-		die("invalid url")
+	dest := destinationPath(repo)
+	if dest == "" {
+		die("invalid url: %v", repo)
 	}
 
 	gitpath := os.Getenv("GITPATH")
@@ -32,10 +43,7 @@ func main() {
 		die("GITPATH is not set")
 	}
 
-	host := slug[1]
-	user := slug[2]
-	project := slug[3]
-	target := filepath.Join(gitpath, host, user, project)
+	target := filepath.FromSlash(path.Join(gitpath, dest))
 	err := os.MkdirAll(target, 0777)
 	if err != nil {
 		die("error creating directory %s: %v", target, err)
