@@ -7,8 +7,8 @@ before:
     # you may remove this if you don't need go generate
     # - go generate ./...
 builds:
-- env:
-  - CGO_ENABLED=0
+  - env:
+      - CGO_ENABLED=0
 archive:
   replacements:
     darwin: Darwin
@@ -26,3 +26,10 @@ changelog:
     exclude:
     - '^docs:'
     - '^test:'
+brew:
+  github:
+    owner: yi-jiayu
+    name: homebrew-tap
+  homepage: "https://github.com/yi-jiayu/git-get"
+  description: "Clone git repositories into namespaced directories like go get."
+
