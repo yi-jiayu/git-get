@@ -12,3 +12,8 @@ brew:
     name: homebrew-tap
   homepage: "https://github.com/yi-jiayu/git-get"
   description: "Clone git repositories into namespaced directories like go get."
+changelog:
+  filters:
+    exclude:
+      - ^ci
+      - ^goreleaser
