@@ -2,8 +2,6 @@ package main
 
 import (
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func Test_destinationPath(t *testing.T) {
@@ -63,7 +61,9 @@ func Test_destinationPath(t *testing.T) {
 	for expected, urls := range testCases {
 		for _, u := range urls {
 			t.Run(u, func(t *testing.T) {
-				assert.Equal(t, expected, destinationPath(u))
+				if actual := destinationPath(u); actual != expected {
+					t.Errorf("destinationPath(%q) = %q, want %q", u, actual, expected)
+				}
 			})
 		}
 	}
