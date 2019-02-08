@@ -22,10 +22,11 @@ workflows:
   test_and_release:
     jobs:
       - test
-      - approve-release:
-          type: approval
-          requires:
-            - test
       - release:
           requires:
-            - approve-release
+            - test
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
