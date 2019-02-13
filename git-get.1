@@ -1,0 +1,26 @@
+.TH GIT-GET 1
+.SH NAME
+git-get \- Clone a repository into a namespaced directory
+.SH SYNOPSIS
+.I git get
+[\fB\-v\fR]
+<repository>
+.SH DESCRIPTION
+Clones Git repositories into a unique directory determined from the Git URL
+hostname and repository path and relative to the directory pointed to by the
+environment variable \fBGITPATH\fR.
+
+For example, if \fB$GITPATH\fR is set to \fB$HOME/git\fR, the following command:
+
+.RS 4
+git get https://github.com/yi-jiayu/git-get.git
+.RE
+
+will clone the remote repository into \fB$HOME/git/github.com/yi-jiayu/git-get\fR.
+.SH OPTIONS
+.TP
+\-v
+.RS 4
+Print version information and exit.
+.RE
+
