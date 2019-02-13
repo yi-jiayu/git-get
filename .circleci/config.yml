@@ -19,10 +19,12 @@ jobs:
       - run: curl -sL https://git.io/goreleaser | bash
 workflows:
   version: 2
-  test_and_release:
+  test:
     jobs:
       - test
-      - release:
+  test_and_release:
+    jobs:
+      - test:
           requires:
             - test
           filters:
@@ -30,3 +32,6 @@ workflows:
               only: /.*/
             branches:
               ignore: /.*/
+      - release:
+          requires:
+            - test
