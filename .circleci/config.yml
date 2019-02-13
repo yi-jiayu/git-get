@@ -25,8 +25,6 @@ workflows:
   test_and_release:
     jobs:
       - test:
-          requires:
-            - test
           filters:
             tags:
               only: /.*/
