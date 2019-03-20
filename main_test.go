@@ -20,6 +20,11 @@ func Test_destinationPath(t *testing.T) {
 			"http://host.xz/path/to/repo.git/",
 			"http://host.xz:1234/path/to/repo.git/",
 
+			"https://host.xz/path/to/repo/",
+			"https://host.xz:1234/path/to/repo/",
+			"http://host.xz/path/to/repo/",
+			"http://host.xz:1234/path/to/repo/",
+
 			"ftps://host.xz:1234/path/to/repo.git/",
 			"ftps://host.xz/path/to/repo.git/",
 			"ftp://host.xz:1234/path/to/repo.git/",
@@ -41,6 +46,11 @@ func Test_destinationPath(t *testing.T) {
 			"https://subdomain.host.xz:1234/path/to/repo.git/",
 			"http://subdomain.host.xz/path/to/repo.git/",
 			"http://subdomain.host.xz:1234/path/to/repo.git/",
+
+			"https://subdomain.host.xz/path/to/repo/",
+			"https://subdomain.host.xz:1234/path/to/repo/",
+			"http://subdomain.host.xz/path/to/repo/",
+			"http://subdomain.host.xz:1234/path/to/repo/",
 
 			"ftps://subdomain.host.xz:1234/path/to/repo.git/",
 			"ftps://subdomain.host.xz/path/to/repo.git/",
