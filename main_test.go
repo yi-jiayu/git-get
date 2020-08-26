@@ -9,6 +9,7 @@ func Test_destinationPath(t *testing.T) {
 		"host.xz/path/to/repo": {
 			"ssh://user@host.xz:1234/path/to/repo.git/",
 			"ssh://user@host.xz/path/to/repo.git/",
+			"ssh://first.last@host.xz/path/to/repo.git/",
 			"ssh://host.xz:1234/path/to/repo.git/",
 			"ssh://host.xz/path/to/repo.git/",
 

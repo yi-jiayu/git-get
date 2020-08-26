@@ -19,7 +19,7 @@ var (
 	commit  = "none"
 )
 
-var urlRegexp = regexp.MustCompile(`^(?:(?:ssh|git|https?|ftps?)://(?:[\w-]+@)?([a-zA-Z0-9.-]+)(?::\d+)?/|file:///|(?:[\w-]+@)?([a-zA-Z0-9.-]+):|/)~?([\w./-]+)$`)
+var urlRegexp = regexp.MustCompile(`^(?:(?:ssh|git|https?|ftps?)://(?:[\w-.]+@)?([a-zA-Z0-9.-]+)(?::\d+)?/|file:///|(?:[\w-]+@)?([a-zA-Z0-9.-]+):|/)~?([\w./-]+)$`)
 
 var showVersion bool
 
