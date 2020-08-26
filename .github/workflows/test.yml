@@ -27,3 +27,6 @@ jobs:
 
     - name: Run tests
       run: go test -v ./...
+
+    - name: Report coverage
+      run: bash <(curl -s https://codecov.io/bash)
