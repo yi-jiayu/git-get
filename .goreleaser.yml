@@ -6,21 +6,21 @@ builds:
       - darwin
       - linux
       - windows
-archive:
-  files:
-    - README*
-    - LICENCE*
-    - CHANGELOG*
-    - git-get.1
-brew:
-  github:
-    owner: yi-jiayu
-    name: homebrew-tap
-  homepage: "https://github.com/yi-jiayu/git-get"
-  description: "Clone git repositories into namespaced directories like go get."
-  install: |
-    bin.install "git-get"
-    man1.install "git-get.1"
+archives:
+  - files:
+      - README*
+      - LICENCE*
+      - CHANGELOG*
+      - git-get.1
+brews:
+  - tap:
+      owner: yi-jiayu
+      name: homebrew-tap
+    homepage: "https://github.com/yi-jiayu/git-get"
+    description: "Clone git repositories into namespaced directories like go get."
+    install: |
+      bin.install "git-get"
+      man1.install "git-get.1"
 changelog:
   filters:
     exclude:
