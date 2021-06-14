@@ -80,6 +80,13 @@ func main() {
 
 	err = syscall.Exec(git, []string{"git", "clone", repo, target}, os.Environ())
 	if err != nil {
-		die("failed to exec git clone: %v", err)
+		// if exec fails, spawn a new process instead
+		cmd := exec.Command("git", "clone", repo, target)
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		err := cmd.Run()
+		if err != nil {
+			die("failed to run git clone: %v", err)
+		}
 	}
 }
